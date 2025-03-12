@@ -1,4 +1,4 @@
-package common
+package log
 
 import (
 	"bytes"
@@ -73,9 +73,7 @@ func InitLogger() *logrus.Logger {
 		level = logrus.InfoLevel
 	}
 	mLog.SetLevel(level) // Set minimum log level
-
-	InitDefaultLogger() // Initialize default logger for global use
-	mLog.Info("Log initialization successful\n")
+	InitDefaultLogger()  // Initialize default logger for global use
 	return mLog
 }
 
