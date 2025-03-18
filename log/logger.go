@@ -49,12 +49,12 @@ func (t *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
-func InitLogger() *logrus.Logger {
+func InitLogger(fileName string) *logrus.Logger {
 	mLog := logrus.New()
 
 	// Create log file writer
 	fileWriter := &lumberjack.Logger{
-		Filename:   "log/app.log",
+		Filename:   fmt.Sprintf("log/%s.log", fileName),
 		MaxSize:    10, // MB
 		MaxBackups: 7,
 		MaxAge:     30, // days
