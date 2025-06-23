@@ -21,65 +21,9 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ProviderType int32
-
-const (
-	ProviderType_Unkown ProviderType = 0
-	ProviderType_Etcd   ProviderType = 1
-	ProviderType_Consul ProviderType = 2
-	ProviderType_Kube   ProviderType = 3
-	ProviderType_Nacos  ProviderType = 4
-)
-
-// Enum value maps for ProviderType.
-var (
-	ProviderType_name = map[int32]string{
-		0: "Unkown",
-		1: "Etcd",
-		2: "Consul",
-		3: "Kube",
-		4: "Nacos",
-	}
-	ProviderType_value = map[string]int32{
-		"Unkown": 0,
-		"Etcd":   1,
-		"Consul": 2,
-		"Kube":   3,
-		"Nacos":  4,
-	}
-)
-
-func (x ProviderType) Enum() *ProviderType {
-	p := new(ProviderType)
-	*p = x
-	return p
-}
-
-func (x ProviderType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ProviderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_conf_proto_enumTypes[0].Descriptor()
-}
-
-func (ProviderType) Type() protoreflect.EnumType {
-	return &file_conf_proto_enumTypes[0]
-}
-
-func (x ProviderType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ProviderType.Descriptor instead.
-func (ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_conf_proto_rawDescGZIP(), []int{0}
-}
-
 type RegistryConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Provider      ProviderType           `protobuf:"varint,1,opt,name=provider,proto3,enum=registry.ProviderType" json:"provider,omitempty"`
-	Nacos         *RegistryConfig_Nacos  `protobuf:"bytes,2,opt,name=nacos,proto3" json:"nacos,omitempty"`
+	Nacos         *RegistryConfig_Nacos  `protobuf:"bytes,1,opt,name=nacos,proto3" json:"nacos,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -112,13 +56,6 @@ func (x *RegistryConfig) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RegistryConfig.ProtoReflect.Descriptor instead.
 func (*RegistryConfig) Descriptor() ([]byte, []int) {
 	return file_conf_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *RegistryConfig) GetProvider() ProviderType {
-	if x != nil {
-		return x.Provider
-	}
-	return ProviderType_Unkown
 }
 
 func (x *RegistryConfig) GetNacos() *RegistryConfig_Nacos {
@@ -329,10 +266,9 @@ var File_conf_proto protoreflect.FileDescriptor
 const file_conf_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"conf.proto\x12\bregistry\"\xfe\x03\n" +
-	"\x0eRegistryConfig\x122\n" +
-	"\bprovider\x18\x01 \x01(\x0e2\x16.registry.ProviderTypeR\bprovider\x124\n" +
-	"\x05nacos\x18\x02 \x01(\v2\x1e.registry.RegistryConfig.NacosR\x05nacos\x1a\x81\x03\n" +
+	"conf.proto\x12\bregistry\"\xca\x03\n" +
+	"\x0eRegistryConfig\x124\n" +
+	"\x05nacos\x18\x01 \x01(\v2\x1e.registry.RegistryConfig.NacosR\x05nacos\x1a\x81\x03\n" +
 	"\x05Nacos\x12\x16\n" +
 	"\x06enable\x18\x01 \x01(\bR\x06enable\x12=\n" +
 	"\x06config\x18\x02 \x01(\v2%.registry.RegistryConfig.Nacos.ConfigR\x06config\x12C\n" +
@@ -346,15 +282,7 @@ const file_conf_proto_rawDesc = "" +
 	"\bRegistry\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\x04R\x04port\x12\x1c\n" +
-	"\tnamespace\x18\x03 \x01(\tR\tnamespace*E\n" +
-	"\fProviderType\x12\n" +
-	"\n" +
-	"\x06Unkown\x10\x00\x12\b\n" +
-	"\x04Etcd\x10\x01\x12\n" +
-	"\n" +
-	"\x06Consul\x10\x02\x12\b\n" +
-	"\x04Kube\x10\x03\x12\t\n" +
-	"\x05Nacos\x10\x04B,Z*github.com/adgers/common/registry;registryb\x06proto3"
+	"\tnamespace\x18\x03 \x01(\tR\tnamespaceB,Z*github.com/adgers/common/registry;registryb\x06proto3"
 
 var (
 	file_conf_proto_rawDescOnce sync.Once
@@ -368,25 +296,22 @@ func file_conf_proto_rawDescGZIP() []byte {
 	return file_conf_proto_rawDescData
 }
 
-var file_conf_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_conf_proto_goTypes = []any{
-	(ProviderType)(0),                     // 0: registry.ProviderType
-	(*RegistryConfig)(nil),                // 1: registry.RegistryConfig
-	(*RegistryConfig_Nacos)(nil),          // 2: registry.RegistryConfig.Nacos
-	(*RegistryConfig_Nacos_Config)(nil),   // 3: registry.RegistryConfig.Nacos.Config
-	(*RegistryConfig_Nacos_Registry)(nil), // 4: registry.RegistryConfig.Nacos.Registry
+	(*RegistryConfig)(nil),                // 0: registry.RegistryConfig
+	(*RegistryConfig_Nacos)(nil),          // 1: registry.RegistryConfig.Nacos
+	(*RegistryConfig_Nacos_Config)(nil),   // 2: registry.RegistryConfig.Nacos.Config
+	(*RegistryConfig_Nacos_Registry)(nil), // 3: registry.RegistryConfig.Nacos.Registry
 }
 var file_conf_proto_depIdxs = []int32{
-	0, // 0: registry.RegistryConfig.provider:type_name -> registry.ProviderType
-	2, // 1: registry.RegistryConfig.nacos:type_name -> registry.RegistryConfig.Nacos
-	3, // 2: registry.RegistryConfig.Nacos.config:type_name -> registry.RegistryConfig.Nacos.Config
-	4, // 3: registry.RegistryConfig.Nacos.registry:type_name -> registry.RegistryConfig.Nacos.Registry
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	1, // 0: registry.RegistryConfig.nacos:type_name -> registry.RegistryConfig.Nacos
+	2, // 1: registry.RegistryConfig.Nacos.config:type_name -> registry.RegistryConfig.Nacos.Config
+	3, // 2: registry.RegistryConfig.Nacos.registry:type_name -> registry.RegistryConfig.Nacos.Registry
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_conf_proto_init() }
@@ -399,14 +324,13 @@ func file_conf_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conf_proto_rawDesc), len(file_conf_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_conf_proto_goTypes,
 		DependencyIndexes: file_conf_proto_depIdxs,
-		EnumInfos:         file_conf_proto_enumTypes,
 		MessageInfos:      file_conf_proto_msgTypes,
 	}.Build()
 	File_conf_proto = out.File
