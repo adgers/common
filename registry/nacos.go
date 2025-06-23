@@ -1,7 +1,6 @@
-package nacos
+package registry
 
 import (
-	creg "github.com/adgers/common/registry"
 	"github.com/go-kratos/kratos/contrib/registry/nacos/v2"
 	kreg "github.com/go-kratos/kratos/v2/registry"
 	"github.com/nacos-group/nacos-sdk-go/clients"
@@ -11,14 +10,14 @@ import (
 )
 
 type Nacos struct {
-	reg creg.Registry
+	reg Registry
 }
 
 func NewNacos() *Nacos {
 	return &Nacos{}
 }
 
-func (n Nacos) Register(c *creg.RegistryConfig) kreg.Registrar {
+func (n Nacos) Register(c *RegistryConfig) kreg.Registrar {
 	sc := []constant.ServerConfig{
 		*constant.NewServerConfig(c.Nacos.Registry.Address, c.Nacos.Registry.Port),
 	}
@@ -42,7 +41,7 @@ func (n Nacos) Register(c *creg.RegistryConfig) kreg.Registrar {
 	return nacos.New(client)
 }
 
-func (n Nacos) Discovery(c *creg.RegistryConfig) kreg.Discovery {
+func (n Nacos) Discovery(c *RegistryConfig) kreg.Discovery {
 	sc := []constant.ServerConfig{
 		*constant.NewServerConfig(c.Nacos.Registry.Address, c.Nacos.Registry.Port),
 	}
