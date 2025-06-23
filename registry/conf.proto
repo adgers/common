@@ -1,0 +1,35 @@
+syntax = "proto3";
+package registry;
+
+
+option go_package = "github.com/adgers/common/registry;registry";
+
+enum ProviderType {
+  Unkown = 0;
+  Etcd = 1;
+  Consul = 2;
+  Kube = 3;
+  Nacos = 4;
+}
+
+message RegistryConfig {
+  ProviderType provider = 1;
+  Nacos nacos = 2;
+  message Nacos {
+    bool enable = 1;
+    Config config = 2;
+    Registry registry = 3;
+    message Config {
+      string address = 1;
+      uint64 port = 2;
+      string namespace = 3;
+      string group = 4;
+      string data_id = 5;
+    }
+    message Registry {
+      string address = 1;
+      uint64 port = 2;
+      string namespace = 3;
+    }
+  }
+}
